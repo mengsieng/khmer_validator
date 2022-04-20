@@ -8,6 +8,14 @@ extension KhmerPhoneNumber on String {
   }
 
   String toKhmerPhoneNumber() {
-    return "855$this";
+    const replacedString = '855';
+    final pattern = RegExp(r'^((\+?855)|(0?))([1-9][0-9])(\d{6,7})$');
+    final newString = replaceAllMapped(
+      pattern,
+      (match) {
+        return '$replacedString${match[4]}${match[5]}';
+      },
+    );
+    return newString;
   }
 }
